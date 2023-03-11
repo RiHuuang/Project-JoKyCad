@@ -1,5 +1,5 @@
 # Project-JoKyCad
-Project Java OOP dalam bimbingan pak Harvianto, dengan anggota Joshua, Franky, dan Richard
+Project Java OOP dengan pak Harvianto, dengan anggota Joshua, Franky, dan Richard
 
 Marcellino Joshua Kristianto - 2602190375
 

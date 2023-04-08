@@ -1,9 +1,6 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.*;
 
 
 public class Siswa extends JFrame {
@@ -14,8 +11,9 @@ public class Siswa extends JFrame {
     private JPanel IsiFrame;
     private JPanel BayarFrame;
     private JPanel HistoryFrame;
+    private JLabel BayarLogo;
+    private JLabel HistoryLabel;
 
-    BufferedImage image;
 
     public Siswa(){
         setContentPane(SiswaMainFrame);
@@ -24,17 +22,12 @@ public class Siswa extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
-//        try {
-//            image = ImageIO.read(new File());
-//        } catch (IOException ex) {
-//            ex.getStackTrace();
-//        }
-
         bayarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //setvisible bayar menu == TRUE
                 //trus set this visible == FALSE
+
             }
 
         });
@@ -48,5 +41,12 @@ public class Siswa extends JFrame {
 
     public static void main(String[] args) {
         Siswa siswaFrame = new Siswa();
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+        BayarLogo = new JLabel( new ImageIcon("Payment Logo.png"));
+        HistoryLabel = new JLabel(new ImageIcon("History Logo.png"));
+
     }
 }

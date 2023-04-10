@@ -1,3 +1,5 @@
+package User;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +15,7 @@ public class Siswa extends JFrame {
     private JPanel HistoryFrame;
     private JLabel BayarLogo;
     private JLabel HistoryLabel;
+    private JLabel SiswaTitleLabel;
 
 
     public Siswa(){

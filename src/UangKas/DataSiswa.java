@@ -4,10 +4,12 @@ import User.Siswa;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataSiswa extends JFrame{
+public class DataSiswa extends JFrame implements ActionListener {
     private String[] status = new String[]{"Lunas", "Belum Bayar"};
     private JTable table1;
     private JPanel DataSiswaPanel;
@@ -26,6 +28,11 @@ public class DataSiswa extends JFrame{
         setSize(400,400);
         table1.setModel(siswaTableModel);
         table1.setAutoCreateRowSorter(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 
     private static class SiswaTableModel extends AbstractTableModel{

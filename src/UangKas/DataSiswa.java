@@ -1,5 +1,6 @@
 package UangKas;
 
+import User.Admin;
 import User.Siswa;
 
 import javax.swing.*;
@@ -28,12 +29,29 @@ public class DataSiswa extends JFrame implements ActionListener {
         setSize(400,400);
         table1.setModel(siswaTableModel);
         table1.setAutoCreateRowSorter(true);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                buka frame yang sebelumnya yg baru trus di dispose
+                new Admin();
+                dispose();
+            }
+        });
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                buka frame yang sebelumnya yg baru trus di dispose
+                new Admin();
+                dispose();
+            }
+        });
     }
+
 
     private static class SiswaTableModel extends AbstractTableModel{
 

@@ -1,6 +1,10 @@
 package UangKas;
 
+import User.Admin;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PembukuanBulananFrame extends JFrame{
     private JTextField a0TextField;
@@ -16,6 +20,16 @@ public class PembukuanBulananFrame extends JFrame{
         setSize(500,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Admin();
+                dispose();
+            }
+
+        });
     }
 
     public static void main(String[] args) {

@@ -1,6 +1,12 @@
 package User;
 
+import FormLogin.UserLogin;
+import UangKas.DataSiswa;
+import UangKas.PembukuanBulananFrame;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Admin extends JFrame {
     private JButton BackButton;
@@ -18,6 +24,28 @@ public class Admin extends JFrame {
         setSize(500,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+        BackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new UserLogin();
+                dispose();
+            }
+        });
+
+        dataSiswaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new DataSiswa();
+                dispose();
+            }
+        });
+        pembukuanButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new PembukuanBulananFrame();
+                dispose();
+            }
+        });
     }
 
     public static void main(String[] args) {

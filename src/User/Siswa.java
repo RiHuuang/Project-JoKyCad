@@ -1,11 +1,16 @@
 package User;
 
+import UangKas.PembayaranFrame;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
 public class Siswa extends JFrame {
+    private String kelas;
+    private String nama;
+    private String status;
     private JButton backButton;
     private JButton bayarButton;
     private JButton historyButton;
@@ -28,22 +33,52 @@ public class Siswa extends JFrame {
         bayarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //setvisible bayar menu == TRUE
-                //trus set this visible == FALSE
-
+                new PembayaranFrame();
+                dispose();
             }
 
         });
         historyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //setvisible history menu == TRUE
+//                new
             }
         });
     }
 
+    public Siswa(String name, String kelas, String status){
+        this.nama = name;
+        this.kelas = kelas;
+        this.status = status;
+    }
+
     public static void main(String[] args) {
         Siswa siswaFrame = new Siswa();
+    }
+
+
+    public String getKelas() {
+        return kelas;
+    }
+
+    public void setKelas(String kelas) {
+        this.kelas = kelas;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     private void createUIComponents() {
@@ -52,4 +87,5 @@ public class Siswa extends JFrame {
         HistoryLabel = new JLabel(new ImageIcon("History Logo.png"));
 
     }
+
 }

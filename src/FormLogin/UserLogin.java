@@ -5,4 +5,6 @@ public class UserLogin {
         public String name;
         public String password;
         public String role;
+
+
 }

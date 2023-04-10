@@ -1,5 +1,8 @@
 package FormLogin;
 
+import User.Admin;
+import User.Siswa;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,8 +10,8 @@ import java.sql.*;
 
 
 public class Login extends JDialog{
-//    EnterAdmin enterAdmin;
-//    EnterSiswa enterSiswa;
+    Admin enterAdmin;
+    Siswa enterSiswa;
     private JTextField txtUsername;
     private JTextField txtName;
     private JPasswordField txtPass;
@@ -20,10 +23,10 @@ public class Login extends JDialog{
     public Login(JFrame parent){
         super(parent);
         setTitle("Login");
-//        enterAdmin = new EnterAdmin(null);
-//        enterSiswa = new EnterSiswa(null);
-//        enterSiswa.setVisible(false);
-//        enterAdmin.setVisible(false);
+        enterAdmin = new Admin();
+        enterSiswa = new Siswa();
+        enterSiswa.setVisible(false);
+        enterAdmin.setVisible(false);
 
         setContentPane(loginPanel);
         setSize(500,500);
@@ -46,17 +49,12 @@ public class Login extends JDialog{
                     dispose();
 
                 } else {
-                    JOptionPane.showMessageDialog(Login.this,"Invalid Login Please ask Admission","Try again",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(Login.this,"Invalid login please ask ADMISSION","Try again", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
 
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        cancelButton.addActionListener(e -> System.exit(3));
         setVisible(true);
     }
     public UserLogin user;
@@ -65,7 +63,7 @@ public class Login extends JDialog{
 
         final String DB_URL = "jdbc:mysql://localhost/kasrtb?serverTimezone=UTC";
         final String USERNAME = "root";
-        final String PASSWORD = "admin2";
+        final String PASSWORD = "admin";
 
         try{
             Connection connection = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
@@ -101,13 +99,13 @@ public class Login extends JDialog{
         Login login = new Login(null);
         UserLogin user = login.user;
         if (user != null){
-            System.out.println("Succes Login as "+user.role);
+            System.out.println("Successfully Login as "+user.role);
             System.out.println(" Welcome " + user.name);
-//            if (user.role.equals("admin")){
-//                login.enterAdmin.setVisible(true);
-//            } else if (user.role.equals("siswa")) {
-//                login.enterSiswa.setVisible(true);
-//            }
+            if (user.role.equals("admin")){
+                login.enterAdmin.setVisible(true);
+            } else if (user.role.equals("siswa")) {
+                login.enterSiswa.setVisible(true);
+            }
         }
         else {
             System.out.println("Authentication Cancel");

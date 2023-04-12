@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Admin extends JFrame {
+public class AdminForm extends JFrame {
     private JButton BackButton;
     private JButton dataSiswaButton;
     private JButton pembukuanButton;
@@ -17,7 +17,7 @@ public class Admin extends JFrame {
     private JPanel AdminFrame;//Main Panel in Admin.form
 
 
-    public Admin(){
+    public AdminForm(){
 
         setContentPane(AdminFrame);
         setTitle("Selamat datang Admin");
@@ -49,7 +49,7 @@ public class Admin extends JFrame {
     }
 
     public static void main(String[] args) {
-        Admin adminFrame = new Admin();
+        AdminForm adminFormFrame = new AdminForm();
     }
     private void createUIComponents() {
         // TODO: place custom component creation code here

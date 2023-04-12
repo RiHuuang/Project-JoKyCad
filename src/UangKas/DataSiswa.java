@@ -1,7 +1,7 @@
 package UangKas;
 
-import User.Admin;
-import User.Siswa;
+import User.AdminForm;
+import User.SiswaForm;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -15,13 +15,13 @@ public class DataSiswa extends JFrame implements ActionListener {
     private JTable table1;
     private JPanel DataSiswaPanel;
     private JButton backButton;
-    ArrayList<Siswa> siswas = new ArrayList<>();
+    ArrayList<SiswaForm> siswaForms = new ArrayList<>();
 
-    SiswaTableModel siswaTableModel = new SiswaTableModel(siswas);
+    SiswaTableModel siswaTableModel = new SiswaTableModel(siswaForms);
 
 
     public DataSiswa() {
-        siswas.add(new Siswa("Richard", "PPTI15", getStatus(0))); //ini dummy data
+        siswaForms.add(new SiswaForm("Richard", "PPTI15", getStatus(0))); //ini dummy data
 
         setContentPane(DataSiswaPanel);
         setVisible(true);
@@ -33,7 +33,7 @@ public class DataSiswa extends JFrame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
 //                buka frame yang sebelumnya yg baru trus di dispose
-                new Admin();
+                new AdminForm();
                 dispose();
             }
         });
@@ -46,7 +46,7 @@ public class DataSiswa extends JFrame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
 //                buka frame yang sebelumnya yg baru trus di dispose
-                new Admin();
+                new AdminForm();
                 dispose();
             }
         });
@@ -56,15 +56,15 @@ public class DataSiswa extends JFrame implements ActionListener {
     private static class SiswaTableModel extends AbstractTableModel{
 
         private final String[] COLUMN = {"Nama", "Kelas", "STATUS"};
-        private List<Siswa> siswas;
+        private List<SiswaForm> siswaForms;
 
-        private SiswaTableModel(List<Siswa> siswas){
-            this.siswas = siswas;
+        private SiswaTableModel(List<SiswaForm> siswaForms){
+            this.siswaForms = siswaForms;
         }
 
         @Override
         public int getRowCount() {
-            return siswas.size();
+            return siswaForms.size();
         }
 
         @Override
@@ -75,9 +75,9 @@ public class DataSiswa extends JFrame implements ActionListener {
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
             return switch (columnIndex){
-                case 0 -> siswas.get(rowIndex).getNama();
-                case 1 -> siswas.get(rowIndex).getKelas();
-                case 2 -> siswas.get(rowIndex).getStatus();
+                case 0 -> siswaForms.get(rowIndex).getNama();
+                case 1 -> siswaForms.get(rowIndex).getKelas();
+                case 2 -> siswaForms.get(rowIndex).getStatus();
                 default -> "-";
             };
         }

@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class Siswa extends JFrame {
+public class SiswaForm extends JFrame {
     private String kelas;
     private String nama;
     private String status;
@@ -23,7 +23,7 @@ public class Siswa extends JFrame {
     private JLabel SiswaTitleLabel;
 
 
-    public Siswa(){
+    public SiswaForm(){
         setContentPane(SiswaMainFrame);
         setTitle("Selamat datang siswa");
         setSize(500,500);
@@ -46,14 +46,14 @@ public class Siswa extends JFrame {
         });
     }
 
-    public Siswa(String name, String kelas, String status){
+    public SiswaForm(String name, String kelas, String status){
         this.nama = name;
         this.kelas = kelas;
         this.status = status;
     }
 
     public static void main(String[] args) {
-        Siswa siswaFrame = new Siswa();
+        SiswaForm siswaFormFrame = new SiswaForm();
     }
 
 

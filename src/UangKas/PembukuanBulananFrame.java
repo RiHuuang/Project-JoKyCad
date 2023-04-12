@@ -1,18 +1,18 @@
 package UangKas;
 
-import User.Admin;
+import User.AdminForm;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PembukuanBulananFrame extends JFrame{
-    private JTextField a0TextField;
-    private JTextField textField2;
-    private JPasswordField passwordField1;
-    private JPasswordField passwordField2;
+    private JTextField TotalPemasukanTextField;
+    private JTextField PengeluaranBulanTextField;
     private JButton backButton;
     private JPanel mainPanel;
+    private JTextField textField;
+    private JTextField textField2;
 
     public PembukuanBulananFrame(){
         setContentPane(mainPanel);
@@ -25,7 +25,7 @@ public class PembukuanBulananFrame extends JFrame{
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Admin();
+                new AdminForm();
                 dispose();
             }
 
@@ -36,3 +36,4 @@ public class PembukuanBulananFrame extends JFrame{
         new PembukuanBulananFrame();
     }
 }
+

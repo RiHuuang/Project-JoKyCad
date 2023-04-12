@@ -1,114 +1,76 @@
 package FormLogin;
 
-import User.Admin;
-import User.Siswa;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.*;
+import java.util.Arrays;
 
-
-public class Login extends JDialog{
-    Admin enterAdmin;
-    Siswa enterSiswa;
+public class Login extends JFrame{
+//    EnterSiswa enterSiswa;
+//    EnterAdmin enterAdmin;
+    private JPanel Content;
     private JTextField txtUsername;
     private JTextField txtName;
     private JPasswordField txtPass;
     private JComboBox txtRole;
     private JButton loginButton;
-    private JPanel loginPanel;
     private JButton cancelButton;
 
-    public Login(JFrame parent){
-        super(parent);
-        setTitle("Login");
-        enterAdmin = new Admin();
-        enterSiswa = new Siswa();
-        enterSiswa.setVisible(false);
-        enterAdmin.setVisible(false);
-
-        setContentPane(loginPanel);
+    public Login(){
+        setTitle("Login Kas Rumah Talenta BCA");
+        setContentPane(Content);
         setSize(500,500);
-        setModal(true);
-        setLocationRelativeTo(parent);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
+//        enterAdmin = new EnterAdmin(null);
+//        enterSiswa = new EnterSiswa(null);
+//
+//        enterSiswa.setVisible(false);
+//        enterAdmin.setVisible(false);
+//        enterAdmin.setLocationRelativeTo(null);
+//        enterSiswa.setLocationRelativeTo(null);
 
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = txtUsername.getText();
-                String name = txtName.getText();
+                String username = String.valueOf(txtUsername.getText());
+                String nama = String.valueOf(txtName.getText());
+                String role = txtRole.getSelectedItem().toString();
                 String password = String.valueOf(txtPass.getPassword());
-                String role = String.valueOf(txtRole.getModel());
 
-                user = getAuthenticatedUser(username,name,password,role);
+                System.out.println(username+" "+nama+" "+role+" "+password);
 
-                if (user != null){
-                    dispose();
+                int validasi = Database.validate(username,nama,password,role);
 
-                } else {
-                    JOptionPane.showMessageDialog(Login.this,"Invalid login please ask ADMISSION","Try again", JOptionPane.ERROR_MESSAGE);
+                if (validasi == 1){
+                    setVisible(false);
+                    System.out.println("Masuk Admin");
+//                    enterAdmin.setVisible(true);
+                } else if (validasi == 2) {
+                    setVisible(false);
+                    System.out.println("Masuk Siswa");
+//                    enterSiswa.setVisible(true);
+                }else if (validasi == 0){
+                    JOptionPane.showMessageDialog(Login.this,"Invalid Login Please ask Admission","Try again",JOptionPane.ERROR_MESSAGE);
+
                 }
+
             }
         });
-
-        cancelButton.addActionListener(e -> System.exit(3));
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Login.this,"See you later!","Exit",JOptionPane.WARNING_MESSAGE);
+                System.exit(0);
+            }
+        });
         setVisible(true);
+
     }
-    public UserLogin user;
-    private UserLogin getAuthenticatedUser(String username, String name, String password, String role) {
-        UserLogin user = null;
 
-        final String DB_URL = "jdbc:mysql://localhost/kasrtb?serverTimezone=UTC";
-        final String USERNAME = "root";
-        final String PASSWORD = "admin";
-
-        try{
-            Connection connection = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
-
-            Statement stat = connection.createStatement();
-            String sql = "SELECT * FROM users WHERE username=? AND password=? AND role=?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,username);
-            preparedStatement.setString(2,password);
-            preparedStatement.setString(3,role);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()){
-                user = new UserLogin();
-                user.username = resultSet.getString("username");
-                user.name = resultSet.getString("nama");
-                user.password = resultSet.getString("password");
-                user.role = resultSet.getString("role");
-            }
-            stat.close();
-            connection.close();
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
-        return user;
-    }
     public static void main(String[] args) {
-        Login login = new Login(null);
-        UserLogin user = login.user;
-        if (user != null){
-            System.out.println("Successfully Login as "+user.role);
-            System.out.println(" Welcome " + user.name);
-            if (user.role.equals("admin")){
-                login.enterAdmin.setVisible(true);
-            } else if (user.role.equals("siswa")) {
-                login.enterSiswa.setVisible(true);
-            }
-        }
-        else {
-            System.out.println("Authentication Cancel");
-        }
+        new Login();
     }
+
 }

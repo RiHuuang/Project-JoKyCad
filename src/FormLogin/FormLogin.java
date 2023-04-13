@@ -3,12 +3,11 @@ package FormLogin;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
-public class Login extends JFrame{
+public class FormLogin extends JFrame{
 //    EnterSiswa enterSiswa;
 //    EnterAdmin enterAdmin;
-    private JPanel Content;
+    private JPanel loginPanel;
     private JTextField txtUsername;
     private JTextField txtName;
     private JPasswordField txtPass;
@@ -16,9 +15,9 @@ public class Login extends JFrame{
     private JButton loginButton;
     private JButton cancelButton;
 
-    public Login(){
+    public FormLogin(){
         setTitle("Login Kas Rumah Talenta BCA");
-        setContentPane(Content);
+        setContentPane(loginPanel);
         setSize(500,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -52,7 +51,7 @@ public class Login extends JFrame{
                     System.out.println("Masuk Siswa");
 //                    enterSiswa.setVisible(true);
                 }else if (validasi == 0){
-                    JOptionPane.showMessageDialog(Login.this,"Invalid Login Please ask Admission","Try again",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(FormLogin.this,"Invalid Login Please ask Admission","Try again",JOptionPane.ERROR_MESSAGE);
 
                 }
 
@@ -61,7 +60,7 @@ public class Login extends JFrame{
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(Login.this,"See you later!","Exit",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(FormLogin.this,"See you later!","Exit",JOptionPane.WARNING_MESSAGE);
                 System.exit(0);
             }
         });
@@ -70,7 +69,7 @@ public class Login extends JFrame{
     }
 
     public static void main(String[] args) {
-        new Login();
+        new FormLogin();
     }
 
 }

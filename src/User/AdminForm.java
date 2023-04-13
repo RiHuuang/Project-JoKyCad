@@ -1,6 +1,6 @@
 package User;
 
-import FormLogin.FormLogin;
+import FormLogin.UserLogin;
 import UangKas.DataSiswa;
 import UangKas.PembukuanBulananFrame;
 
@@ -27,7 +27,7 @@ public class AdminForm extends JFrame {
         BackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new FormLogin();
+                new UserLogin();
                 dispose();
             }
         });

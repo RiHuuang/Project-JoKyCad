@@ -1,27 +1,29 @@
 package UangKas;
 
+import FormLogin.Database;
 import User.AdminForm;
 import User.SiswaForm;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import javax.xml.crypto.Data;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataSiswa extends JFrame implements ActionListener {
-    private String[] status = new String[]{"Lunas", "Belum Bayar"};
+
     private JTable table1;
     private JPanel DataSiswaPanel;
     private JButton backButton;
-    ArrayList<SiswaForm> siswaForms = new ArrayList<>();
+    Database database = new Database();
 
-    SiswaTableModel siswaTableModel = new SiswaTableModel(siswaForms);
+    SiswaTableModel siswaTableModel = new SiswaTableModel(database.getSiswaForms());
 
 
     public DataSiswa() {
-        siswaForms.add(new SiswaForm("Richard", "PPTI15", getStatus(0))); //ini dummy data
+
 
         setContentPane(DataSiswaPanel);
         setVisible(true);
@@ -96,9 +98,7 @@ public class DataSiswa extends JFrame implements ActionListener {
         }
     }
 
-    public String getStatus(int i) {
-        return status[i];
-    }
+
 
     public static void main(String[] args) {
         DataSiswa ds = new DataSiswa();

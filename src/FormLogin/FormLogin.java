@@ -1,5 +1,8 @@
 package FormLogin;
 
+import User.AdminForm;
+import User.SiswaForm;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,18 +41,18 @@ public class FormLogin extends JFrame{
                 String role = txtRole.getSelectedItem().toString();
                 String password = String.valueOf(txtPass.getPassword());
 
-                System.out.println(username+" "+nama+" "+role+" "+password);
+                System.out.println(username+" "+nama+" "+ role +" "+password);
 
                 int validasi = Database.validate(username,nama,password,role);
-
+                System.out.println(validasi);
                 if (validasi == 1){
                     setVisible(false);
                     System.out.println("Masuk Admin");
-//                    enterAdmin.setVisible(true);
+                    new AdminForm();
                 } else if (validasi == 2) {
                     setVisible(false);
                     System.out.println("Masuk Siswa");
-//                    enterSiswa.setVisible(true);
+                    new SiswaForm();
                 }else if (validasi == 0){
                     JOptionPane.showMessageDialog(FormLogin.this,"Invalid Login Please ask Admission","Try again",JOptionPane.ERROR_MESSAGE);
 

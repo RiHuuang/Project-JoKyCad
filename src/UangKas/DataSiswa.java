@@ -2,7 +2,9 @@ package UangKas;
 
 import FormLogin.Database;
 import User.AdminForm;
+import User.Siswa;
 import User.SiswaForm;
+import User.User;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -19,7 +21,7 @@ public class DataSiswa extends JFrame implements ActionListener {
     private JButton backButton;
     Database database = new Database();
 
-    SiswaTableModel siswaTableModel = new SiswaTableModel(database.getSiswaForms());
+    SiswaTableModel siswaTableModel = new SiswaTableModel(database.getUsers());
 
 
     public DataSiswa() {
@@ -58,15 +60,17 @@ public class DataSiswa extends JFrame implements ActionListener {
     private static class SiswaTableModel extends AbstractTableModel{
 
         private final String[] COLUMN = {"Nama", "Kelas", "STATUS"};
-        private List<SiswaForm> siswaForms;
+        private ArrayList<User> users;
+        private Database database = new Database();
 
-        private SiswaTableModel(List<SiswaForm> siswaForms){
-            this.siswaForms = siswaForms;
+        private SiswaTableModel(ArrayList<User> users){
+            database.initDataSiswa();
+            this.users = database.getUsers();
         }
 
         @Override
         public int getRowCount() {
-            return siswaForms.size();
+            return users.size();
         }
 
         @Override
@@ -77,9 +81,9 @@ public class DataSiswa extends JFrame implements ActionListener {
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
             return switch (columnIndex){
-                case 0 -> siswaForms.get(rowIndex).getNama();
-                case 1 -> siswaForms.get(rowIndex).getKelas();
-                case 2 -> siswaForms.get(rowIndex).getStatus();
+                case 0 -> users.get(rowIndex).getNama();
+                case 1 -> users.get(rowIndex).getKelas();
+                case 2 -> User.getStatus();
                 default -> "-";
             };
         }

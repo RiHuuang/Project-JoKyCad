@@ -1,7 +1,7 @@
 package User;
 
-import FormLogin.UserLogin;
 import UangKas.DataSiswa;
+import UangKas.Login;
 import UangKas.PembukuanBulananFrame;
 
 import javax.swing.*;
@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AdminForm extends JFrame {
+    private Admin adminClass;
     private JButton BackButton;
     private JButton dataSiswaButton;
     private JButton pembukuanButton;
@@ -27,7 +28,7 @@ public class AdminForm extends JFrame {
         BackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new UserLogin();
+                new Login();
                 dispose();
             }
         });
@@ -48,9 +49,9 @@ public class AdminForm extends JFrame {
         });
     }
 
-    public static void main(String[] args) {
-        AdminForm adminFormFrame = new AdminForm();
-    }
+//    public static void main(String[] args) {
+//        AdminForm adminFormFrame = new AdminForm();
+//    }
     private void createUIComponents() {
         // TODO: place custom component creation code here
         DataSiswaLabel = new JLabel(new ImageIcon("StudentDataIcon.jpg"));

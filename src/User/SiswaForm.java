@@ -1,5 +1,6 @@
 package User;
 
+import FormLogin.Loginn;
 import UangKas.PembayaranFrame;
 
 import javax.swing.*;
@@ -8,9 +9,7 @@ import java.awt.event.ActionListener;
 
 
 public class SiswaForm extends JFrame {
-    private String kelas;
-    private String nama;
-    private String status;
+
     private JButton backButton;
     private JButton bayarButton;
     private JButton historyButton;
@@ -44,32 +43,21 @@ public class SiswaForm extends JFrame {
 //                new
             }
         });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Loginn();
+                dispose();
+            }
+        });
     }
 
-    public SiswaForm(String name, String kelas, String status){
-        this.nama = name;
-        this.kelas = kelas;
-        this.status = status;
-    }
+
 
     public static void main(String[] args) {
         SiswaForm siswaFormFrame = new SiswaForm();
     }
 
-
-    public String getKelas() {
-        return kelas;
-    }
-
-
-    public String getNama() {
-        return nama;
-    }
-
-
-    public String getStatus() {
-        return status;
-    }
 
 
     private void createUIComponents() {

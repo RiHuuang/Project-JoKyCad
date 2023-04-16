@@ -2,6 +2,7 @@ package UangKas;
 
 import FormLogin.Database;
 import User.AdminForm;
+import User.Admin;
 import User.Siswa;
 import User.SiswaForm;
 import User.User;
@@ -14,12 +15,16 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static FormLogin.Database.getStatus;
+import static FormLogin.Database.initDataSiswa;
+
 public class DataSiswa extends JFrame implements ActionListener {
 
     private JTable table1;
     private JPanel DataSiswaPanel;
     private JButton backButton;
-    Database database = new Database();
+    static Database database = new Database();
+
 
     SiswaTableModel siswaTableModel = new SiswaTableModel(database.getUsers());
 
@@ -61,11 +66,23 @@ public class DataSiswa extends JFrame implements ActionListener {
 
         private final String[] COLUMN = {"Nama", "Kelas", "STATUS"};
         private ArrayList<User> users;
-        private Database database = new Database();
+        private ArrayList<Siswa> siswas ;
+        private Siswa siswa;
 
         private SiswaTableModel(ArrayList<User> users){
-            database.initDataSiswa();
-            this.users = database.getUsers();
+            initDataSiswa();
+            this.users = Database.getUsers();
+
+            //ni nyoba doang
+            for(User user : users){
+                if(user instanceof Admin){
+
+//                    assert this.siswas != null;
+//                    this.siswas.add((Siswa) user);
+//                    this.siswas = siswas.add( new Siswa(user.getNama(),user.getKelas(),((Siswa) user).getStatus(),user.getUsername(),user.getPassword(),user.getRole()));
+                }
+            }
+
         }
 
         @Override
@@ -83,7 +100,8 @@ public class DataSiswa extends JFrame implements ActionListener {
             return switch (columnIndex){
                 case 0 -> users.get(rowIndex).getNama();
                 case 1 -> users.get(rowIndex).getKelas();
-                case 2 -> User.getStatus();
+                //status nya error, gabisa ngambil status dari si siswa nya harus lewat user
+                case 2 -> users.get(rowIndex).getStatus();
                 default -> "-";
             };
         }

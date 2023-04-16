@@ -1,5 +1,6 @@
 package User;
 
+
 public class User {
 
 
@@ -8,13 +9,14 @@ public class User {
     private String username;
     private String password;
     private String role;
-    private static String[] status = new String[]{"Lunas", "Belum Bayar"};
+    private String status;
 
 
 
-    public User(String nama, String kelas, String username, String password, String role) {
+    public User(String nama, String kelas, String status, String username, String password, String role) {
         this.kelas = kelas;
         this.nama = nama;
+        this.status = status;
         this.username = username;
         this.password = password;
         this.role = role;
@@ -60,11 +62,7 @@ public class User {
         this.role = role;
     }
 
-    public static String[] getStatus() {
+    public String getStatus() {
         return status;
-    }
-
-    public static void setStatus(String[] status) {
-        User.status = status;
     }
 }

@@ -9,11 +9,11 @@ public class Siswa extends User{
     private ArrayList<Transaksi> historyTransaksi= new ArrayList<>();
 
 
-    private int denda;
+
     private int daysPassed;
-    public Siswa(String nama, String kelas, String status, String username, String password, String role, int denda, int daysPassed) {
+    public Siswa(String nama, String kelas, String status, String username, String password, String role, int daysPassed) {
         super(nama, kelas,status, username, password, role);
-        this.denda=denda;
+
         this.daysPassed=daysPassed;
     }
 
@@ -21,9 +21,6 @@ public class Siswa extends User{
         return historyTransaksi;
     }
 
-    public int getDenda() {
-        return denda;
-    }
 
     public int getDaysPassed() {
         return daysPassed;

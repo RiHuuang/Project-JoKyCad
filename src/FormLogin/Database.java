@@ -64,12 +64,12 @@ public class Database {
                 String username = data[3];
                 String password = data[4];
                 String role = data[5];
-                int denda = Integer.parseInt(data[6]);
-                int daysPassed = Integer.parseInt(data[7]);
+//                int denda = Integer.parseInt(data[6]);
+                int daysPassed = Integer.parseInt(data[6]);
 //                System.out.printf("%s %s %d %s %s %s %d %d", namaSiswa,kelasSiswa,status,username,password,role,denda,daysPassed);
 
                 if(role.equalsIgnoreCase("admin"))users.add(new Admin(namaSiswa,kelasSiswa,getStatus(status),username,password,role));
-                else if (role.equalsIgnoreCase("siswa"))users.add(new Siswa(namaSiswa,kelasSiswa,getStatus(status),username,password,role,denda,daysPassed));
+                else if (role.equalsIgnoreCase("siswa"))users.add(new Siswa(namaSiswa,kelasSiswa,getStatus(status),username,password,role,daysPassed));
                 else throw(new IllegalArgumentException("No user"));
             }
         }catch(Exception e){

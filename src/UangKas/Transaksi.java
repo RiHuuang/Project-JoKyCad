@@ -24,7 +24,7 @@ public class Transaksi {
 
     public Transaksi(Double jumlahPembayaran, LocalDate tanggalBayar, Double jumlahDenda, LocalDate deadlineBayar) {
         //disini nulis di history, history nya di campur aja semua user nanti di linear search dari data nya yg namanya sesuai ama username
-//        terus dia juga ngubah status dari 1 jadi 0, (cara yang baru kepikiran sih ngerewrite semuanya dengan cara masukin dulu ke variable
+//        terus dia juga ngubah status dari 1 jadi 0 sama daysPassed nya jadi 0, (cara yang baru kepikiran sih ngerewrite semuanya dengan cara masukin dulu ke variable
 //        baru dimasukin lagi kedalem si txt nya.
 
 

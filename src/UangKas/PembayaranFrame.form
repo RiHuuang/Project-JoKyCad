@@ -66,7 +66,7 @@
           <text value="Total"/>
         </properties>
       </component>
-      <component id="86d36" class="javax.swing.JTextField" binding="rp100000TextField" default-binding="true">
+      <component id="86d36" class="javax.swing.JTextField" binding="TagihanTF">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="3" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -76,7 +76,7 @@
           <text value="Rp. 100.000"/>
         </properties>
       </component>
-      <component id="d1a25" class="javax.swing.JTextField" binding="a31April2023TextField" default-binding="true">
+      <component id="d1a25" class="javax.swing.JTextField" binding="DeadlineTF">
         <constraints>
           <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="3" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -86,7 +86,7 @@
           <text value="31 April 2023"/>
         </properties>
       </component>
-      <component id="9f550" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+      <component id="9f550" class="javax.swing.JTextField" binding="DendaTF">
         <constraints>
           <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="3" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -96,7 +96,7 @@
           <text value="-"/>
         </properties>
       </component>
-      <component id="25337" class="javax.swing.JLabel">
+      <component id="25337" class="javax.swing.JLabel" binding="TotalValueLabel">
         <constraints>
           <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="3" use-parent-layout="false"/>
         </constraints>

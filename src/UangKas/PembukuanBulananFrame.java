@@ -1,25 +1,38 @@
 package UangKas;
 
+import FormLogin.Database;
 import User.AdminForm;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class PembukuanBulananFrame extends JFrame{
-    private JTextField TotalPemasukanTextField;
-    private JTextField PengeluaranBulanTextField;
+    private JTextField TotalPemasukanTF;
+    private JTextField PengeluaranBulanTF;
     private JButton backButton;
     private JPanel mainPanel;
-    private JTextField textField;
-    private JTextField textField2;
+    private JTextField TotalPengeluaranTF;
+    private JTextField TotalKasTF;
+    private JLabel PengeluananBulanLabel;
 
     public PembukuanBulananFrame(){
+        Database.initPembukuanBulanan();
         setContentPane(mainPanel);
         setTitle("Pembukuan Bulanan");
         setSize(500,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+        Timer timer = new Timer(1, e -> {
+            Date now = new Date();
+            SimpleDateFormat format = new SimpleDateFormat("MMMM");
+            String month = format.format(now);
+            String text = "Pengeluaran Bulan " + month;
+            PengeluananBulanLabel.setText(text);
+        });
+        timer.start();
 
 
         backButton.addActionListener(new ActionListener() {

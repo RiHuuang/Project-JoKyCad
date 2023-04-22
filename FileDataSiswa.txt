@@ -10,7 +10,7 @@ Isabella,PPTI12,1,Isabella_admin,password_admin,admin,0
 Charlie,PPTI11,0,CharmingCharlie,nD4#pL8$,siswa,1
 Samantha,PPTI13,0,SmartSamantha,tF7%mR4^,siswa,0,
 Henry,PPTI11,1,Henry_admin,password_admin,admin,0,
-Frank,PPTI11,0,FriendlyFrank,dJ6!kL7#,siswa,1
+Frank,PPTI11,0,FriendlyFrank,dJ6!kL7#,siswa,0
 Mia,PPTI11,0,MagnificentMia,pQ9&lM5#,siswa,0
 Robert,PPTI12,0,RadiantRobert,wE8@hN7%,siswa,0
 Xavier,PPTI13,0,XavierTheXtreme,eT3rM6$,siswa,0
@@ -20,7 +20,7 @@ Jack,PPTI12,0,JovialJack,tR7^lM9%,siswa,0
 Yvonne,PPTI11,1,Yvonne_admin,password_admin,admin,0
 Grace,PPTI13,0,GreatGrace,mD9$lK3#,siswa,0
 Liam,PPTI11,1,Liam_admin,password_admin,admin,0
-Quinn,PPTI12,1,QuickQuinn,nC5^jK9&,siswa,2
+Quinn,PPTI12,0,QuickQuinn,nC5^jK9&,siswa,0
 Peter,PPTI11,0,PolitePeter,tS4#nF8&,siswa,0
 Ursula,PPTI13,1,Ursula_admin,password_admin,admin,0
 Charlie,PPTI13,0,ChattyCharlie,pR8!mN3&,siswa,10

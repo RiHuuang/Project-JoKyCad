@@ -1,7 +1,9 @@
 package UangKas;
 
 import FormLogin.Database;
+import FormLogin.Loginn;
 import User.Siswa;
+import User.SiswaForm;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,13 +13,12 @@ import java.awt.event.KeyListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static FormLogin.Database.getUserTemp;
+import static FormLogin.Database.*;
 
-public class PembayaranFrame extends JFrame implements KeyListener {
+public class PembayaranFrame extends JFrame{
 
     //TF stands for TextField
     private JLabel Judul = new JLabel("Pembayaran");
-    private JButton xButton;
     private JTextField TagihanTF;
     private JTextField DeadlineTF;
     private JTextField DendaTF;
@@ -25,10 +26,16 @@ public class PembayaranFrame extends JFrame implements KeyListener {
     private JButton bayarButton;
     private JPanel mainPanel;
     private JLabel TotalValueLabel;
+    private final double iuranBulanan = 100000.00;
 
 
     public PembayaranFrame(){
+        initDataSiswa();
+        initPembukuanBulanan();
+        reValidate();
         Transaksi transaksi = new Transaksi(LocalDate.now());
+        String loggedUsername = Database.getUserTemp().getUsername();
+        String loggedPassword = Database.getUserTemp().getPassword();
 
         LocalDate currentDate = LocalDate.now();
         setContentPane(mainPanel);
@@ -39,16 +46,29 @@ public class PembayaranFrame extends JFrame implements KeyListener {
 //        System.out.println(Database.getUserTemp().getNama());
         TagihanTF.setEditable(false);
         DeadlineTF.setEditable(false);
+        LocalDate deadline = currentDate.withDayOfMonth(currentDate.lengthOfMonth());;
         DeadlineTF.setText(Transaksi.getDeadline(currentDate));
         DendaTF.setEditable(false);
-
-        TotalValueLabel.setText(String.valueOf(transaksi.hitungPembayaran(100000.00, transaksi.hitungDenda(Database.getUserTemp().getDaysPassed()))));
-        DendaTF.setText(String.valueOf(transaksi.hitungDenda(Database.getUserTemp().getDaysPassed())));
+        double totalBayar = transaksi.hitungPembayaran(iuranBulanan, transaksi.hitungDenda(Database.getUserTemp().getDaysPassed()));
+        double totalDenda = transaksi.hitungDenda(Database.getUserTemp().getDaysPassed());
+        TotalValueLabel.setText("Rp. "+ totalBayar);
+        DendaTF.setText("Rp. "+ totalDenda);
 
         bayarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                Transaksi()
+                new Transaksi(totalBayar,currentDate,0);
+                initDataSiswa();
+                reValidate();
+                dispose();
+
+            }
+        });
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SiswaForm();
+                dispose();
             }
         });
     }
@@ -58,19 +78,4 @@ public class PembayaranFrame extends JFrame implements KeyListener {
 
     }
 
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
 }

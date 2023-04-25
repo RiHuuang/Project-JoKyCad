@@ -38,6 +38,7 @@ public class PembayaranFrame extends JFrame{
         setSize(500,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+        setLocationRelativeTo(null);
 //        System.out.println(Database.getUserTemp().getNama());
         TagihanTF.setEditable(false);
         DeadlineTF.setEditable(false);

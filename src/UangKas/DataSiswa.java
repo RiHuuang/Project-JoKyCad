@@ -36,6 +36,7 @@ public class DataSiswa extends JFrame implements ActionListener {
         setVisible(true);
         setDefaultCloseOperation(3);
         setSize(400,400);
+        setLocationRelativeTo(null);
         table1.setModel(siswaTableModel);
         table1.setAutoCreateRowSorter(true);
         backButton.addActionListener(new ActionListener() {

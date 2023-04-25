@@ -1,6 +1,7 @@
 package User;
 
 import FormLogin.Loginn;
+import UangKas.HistorySiswa;
 import UangKas.PembayaranFrame;
 
 import javax.swing.*;
@@ -27,6 +28,7 @@ public class SiswaForm extends JFrame {
         setTitle("Selamat datang siswa");
         setSize(500,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         setVisible(true);
 
         bayarButton.addActionListener(new ActionListener() {
@@ -40,7 +42,8 @@ public class SiswaForm extends JFrame {
         historyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                new
+                new HistorySiswa();
+                dispose();
             }
         });
         backButton.addActionListener(new ActionListener() {

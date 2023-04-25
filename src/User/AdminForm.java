@@ -2,6 +2,7 @@ package User;
 
 import FormLogin.Loginn;
 import UangKas.DataSiswa;
+//import UangKas.Login;
 import UangKas.PembukuanBulananFrame;
 
 import javax.swing.*;
@@ -25,6 +26,7 @@ public class AdminForm extends JFrame {
         setSize(500,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+        setLocationRelativeTo(null);
         BackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

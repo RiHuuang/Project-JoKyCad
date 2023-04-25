@@ -1,17 +1,12 @@
 package UangKas;
 
 import FormLogin.Database;
-import FormLogin.Loginn;
-import User.Siswa;
 import User.SiswaForm;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import static FormLogin.Database.*;
 
@@ -34,8 +29,8 @@ public class PembayaranFrame extends JFrame{
         initPembukuanBulanan();
         reValidate();
         Transaksi transaksi = new Transaksi(LocalDate.now());
-        String loggedUsername = Database.getUserTemp().getUsername();
-        String loggedPassword = Database.getUserTemp().getPassword();
+        String loggedUsername = Database.getSiswaTemp().getUsername();
+        String loggedPassword = Database.getSiswaTemp().getPassword();
 
         LocalDate currentDate = LocalDate.now();
         setContentPane(mainPanel);
@@ -49,8 +44,8 @@ public class PembayaranFrame extends JFrame{
         LocalDate deadline = currentDate.withDayOfMonth(currentDate.lengthOfMonth());;
         DeadlineTF.setText(Transaksi.getDeadline(currentDate));
         DendaTF.setEditable(false);
-        double totalBayar = transaksi.hitungPembayaran(iuranBulanan, transaksi.hitungDenda(Database.getUserTemp().getDaysPassed()));
-        double totalDenda = transaksi.hitungDenda(Database.getUserTemp().getDaysPassed());
+        double totalBayar = transaksi.hitungPembayaran(iuranBulanan, transaksi.hitungDenda(Database.getSiswaTemp().getDaysPassed()));
+        double totalDenda = transaksi.hitungDenda(Database.getSiswaTemp().getDaysPassed());
         TotalValueLabel.setText("Rp. "+ totalBayar);
         DendaTF.setText("Rp. "+ totalDenda);
 

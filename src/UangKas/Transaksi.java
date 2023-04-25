@@ -6,13 +6,9 @@ import User.Siswa;
 import User.SiswaForm;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
-import javax.xml.stream.events.DTD;
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 
 public class Transaksi {
     Siswa siswa;
@@ -22,8 +18,8 @@ public class Transaksi {
     protected Double jumlahDenda;
     protected LocalDate deadlineBayar;
     protected boolean pembayaran;
-    String loggedUsername = Database.getUserTemp().getUsername();
-    String loggedPassword = Database.getUserTemp().getPassword();
+    String loggedUsername = Database.getSiswaTemp().getUsername();
+    String loggedPassword = Database.getSiswaTemp().getPassword();
 
     public Transaksi(LocalDate tanggalHariIni){
         tanggalBayar = tanggalHariIni;
@@ -39,19 +35,19 @@ public class Transaksi {
         //disini nulis di history, history nya di campur aja semua user nanti di linear search dari data nya yg namanya sesuai ama username
 //        terus dia juga ngubah status dari 1 jadi 0 sama daysPassed nya jadi 0, (cara yang baru kepikiran sih ngerewrite semuanya dengan cara masukin dulu ke variable
 //        baru dimasukin lagi kedalem si txt nya.
-        System.out.println("Status database userTemp: "+Database.getUserTemp().getStatus());
+        System.out.println("Status database userTemp: "+Database.getSiswaTemp().getStatus());
 //        ini ngecek dia udah bayar apa belomnya, trus update data di siswanya
-        if(Database.getUserTemp().getStatus().equalsIgnoreCase("lunas")){
+        if(Database.getSiswaTemp().getStatus().equalsIgnoreCase("lunas")){
             JOptionPane.showMessageDialog(null,"You have already paid this month's cash","Paid",JOptionPane.ERROR_MESSAGE);
             new SiswaForm();
 
-        }else if(Database.getUserTemp().getStatus().equalsIgnoreCase("belum bayar")){
-            Database.updateDataSiswa(Database.getUserTemp().getUsername(),Database.getUserTemp().getPassword(),0,0);
+        }else if(Database.getSiswaTemp().getStatus().equalsIgnoreCase("belum bayar")){
+            Database.updateDataSiswa(Database.getSiswaTemp().getUsername(),Database.getSiswaTemp().getPassword(),0,0);
             //        INSERT HISTORY
             LocalDate transactionTime = LocalDate.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM uuuu");
             Database.insertHistorySiswa(jumlahPembayaran, transactionTime);
-            System.out.println("Pembayaran"+Database.getUserTemp().getUsername() + " " + Database.getUserTemp().getStatus());
+            System.out.println("Pembayaran"+Database.getSiswaTemp().getUsername() + " " + Database.getSiswaTemp().getStatus());
 
 //        NAMBAHIN KE PEMBUKUAN BULANAN
 //            Kalau Bulan nya sama kek di data terakhir
@@ -98,14 +94,14 @@ public class Transaksi {
         long daysSinceDeadline = ChronoUnit.DAYS.between(lastDayOfPreviousMonth, currentDate);
 
 
-        if(Database.getUserTemp().getStatus().equalsIgnoreCase("belum bayar")){
+        if(Database.getSiswaTemp().getStatus().equalsIgnoreCase("belum bayar")){
             return daysSinceDeadline;
-        }else if (Database.getUserTemp().getStatus().equalsIgnoreCase("LUNAS")) return 0;
+        }else if (Database.getSiswaTemp().getStatus().equalsIgnoreCase("LUNAS")) return 0;
         return -1;
     }
     protected double hitungPembayaran(Double jumlahPembayaran, Double jumlahDenda){
         double total = jumlahPembayaran + jumlahDenda;
-        if(Database.getUserTemp().getStatus().equalsIgnoreCase("belum bayar") && (Database.getUserTemp().getDaysPassed()>0 &&Database.getUserTemp().getDaysPassed()<6)){//ini buat kalo bayar 2 bulan, bayar bulan lalu yg nunggak sama bayar bulan ini.
+        if(Database.getSiswaTemp().getStatus().equalsIgnoreCase("belum bayar") && (Database.getSiswaTemp().getDaysPassed()>0 &&Database.getSiswaTemp().getDaysPassed()<6)){//ini buat kalo bayar 2 bulan, bayar bulan lalu yg nunggak sama bayar bulan ini.
             total += 100000.00;
         }
         return total;

@@ -1,13 +1,11 @@
 package FormLogin;
 
 import UangKas.Pembukuan;
-import UangKas.PembukuanBulananFrame;
 import UangKas.Transaksi;
 import User.Siswa;
 import User.User;
 import User.Admin;
 
-import javax.xml.crypto.Data;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,7 +16,9 @@ public class Database {
     private static ArrayList<Transaksi> histories = new ArrayList<>();
     private static ArrayList<Pembukuan> pembukuans = new ArrayList<>();
     private static String[] status = new String[]{"Lunas", "Belum Bayar"};
-    private static Siswa userTemp;
+    private static Siswa siswaTemp;
+    private static User userTemp;
+    private static Admin adminTemp;
 
 
 
@@ -37,10 +37,14 @@ public class Database {
 //            System.out.println(i);
 //            System.out.printf("sout validate dalem for : %s %s %s\n", users.get(i).getUsername(), users.get(i).getNama(),users.get(i).getPassword());
             if(username.equals(users.get(i).getUsername()) && password.equals(users.get(i).getPassword()) && nama.equals(users.get(i).getNama()) && role.equalsIgnoreCase(users.get(i).getRole())){
-                userTemp = (Siswa)users.get(i);
+
+                userTemp = users.get(i);
+
                 if (users.get(i) instanceof Admin){
+                    adminTemp = (Admin) adminTemp;
                     return 1;
                 } else if (users.get(i) instanceof Siswa) {
+                    siswaTemp = (Siswa) userTemp;
                     return 2;
                 }else return 0;
             }
@@ -49,7 +53,7 @@ public class Database {
     }
 
     public static void reValidate() {
-        validate(userTemp.getUsername(), userTemp.getNama(), userTemp.getPassword(), userTemp.getRole());
+        validate(siswaTemp.getUsername(), siswaTemp.getNama(), siswaTemp.getPassword(), siswaTemp.getRole());
     }
 
 
@@ -92,14 +96,14 @@ public class Database {
                 String[] data;
                 data = s.split(",");
                 if(username.equals(data[3]) && password.equals(data[4])){
-                    userTemp.setNama(data[0]);
-                    userTemp.setKelas(data[1]);
-                    userTemp.setUsername(data[3]);
-                    userTemp.setPassword(data[4]);
-                    userTemp.setRole(data[5]);
-                    userTemp.setDaysPassed(updatedDaysPassed);
-                    userTemp.setStatus(String.valueOf(updatedStatus));
-                    String update = userTemp.getNama()+","+userTemp.getKelas()+","+userTemp.getStatus()+","+userTemp.getUsername()+","+userTemp.getPassword()+","+userTemp.getRole()+","+userTemp.getDaysPassed();
+                    siswaTemp.setNama(data[0]);
+                    siswaTemp.setKelas(data[1]);
+                    siswaTemp.setUsername(data[3]);
+                    siswaTemp.setPassword(data[4]);
+                    siswaTemp.setRole(data[5]);
+                    siswaTemp.setDaysPassed(updatedDaysPassed);
+                    siswaTemp.setStatus(String.valueOf(updatedStatus));
+                    String update = siswaTemp.getNama()+","+ siswaTemp.getKelas()+","+ siswaTemp.getStatus()+","+ siswaTemp.getUsername()+","+ siswaTemp.getPassword()+","+ siswaTemp.getRole()+","+ siswaTemp.getDaysPassed();
                     sb.append(update);
                 } else {
                     sb.append(s);
@@ -114,11 +118,11 @@ public class Database {
         }catch(Exception e){
             e.printStackTrace();
         }
-        userTemp.setStatus(getStatus(updatedStatus));
+        siswaTemp.setStatus(getStatus(updatedStatus));
     }
     public static void insertHistorySiswa(double jumlahBayar, LocalDate tanggalBayar){
-        String loggedUsername = getUserTemp().getUsername();
-        String loggedClass = getUserTemp().getKelas();
+        String loggedUsername = getSiswaTemp().getUsername();
+        String loggedClass = getSiswaTemp().getKelas();
         try{
             File f=new File("FileHistorySiswa.txt");
 //            BufferedWriter bw = new BufferedWriter(new FileWriter("FileHistorySiswa.txt"));
@@ -206,8 +210,16 @@ public class Database {
         return users;
     }
 
-    public static Siswa getUserTemp() {
+    public static Siswa getSiswaTemp() {
+        return siswaTemp;
+    }
+
+    public static User getUserTemp() {
         return userTemp;
+    }
+
+    public static Admin getAdminTemp() {
+        return adminTemp;
     }
 
     public static ArrayList<Transaksi> getHistories() {

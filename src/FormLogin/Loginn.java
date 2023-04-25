@@ -1,14 +1,11 @@
 package FormLogin;
 
 import User.AdminForm;
-import User.Siswa;
 import User.SiswaForm;
-import User.User;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class Loginn extends JFrame{
 //    EnterSiswa enterSiswa;
@@ -42,12 +39,12 @@ public class Loginn extends JFrame{
 //                System.out.println(username+" "+nama+" "+role+" "+password);
 
                 int validasi = Database.validate(username,nama,password,role);
-                System.out.println(Database.getUserTemp().getClass());
 //                System.out.println("\n\n"+validasi);
 
                 if (validasi == 1){
                     setVisible(false);
                     System.out.println("Masuk Admin");
+//                    System.out.println(Database.getAdminTemp().getClass());
 
                     new AdminForm();
                     dispose();
@@ -56,6 +53,7 @@ public class Loginn extends JFrame{
                 } else if (validasi == 2) {
                     setVisible(false);
                     System.out.println("Masuk Siswa");
+//                    System.out.println(Database.getSiswaTemp().getClass());
 
                     new SiswaForm();
                     dispose();

@@ -17,6 +17,7 @@ public class PembukuanBulananFrame extends JFrame{
     private JTextField TotalPengeluaranTF;
     private JTextField TotalKasTF;
     private JLabel PengeluananBulanLabel;
+    private JButton submitButton;
 
     public PembukuanBulananFrame(){
         Database.initPembukuanBulanan();
@@ -40,9 +41,22 @@ public class PembukuanBulananFrame extends JFrame{
         double TotalPemasukan = 10;
         double TotalPengeluaran = 9;
         double TotalKas = TotalPemasukan - TotalPengeluaran;
+        TotalPemasukanTF.setText("Rp. " + TotalPemasukan);
+        TotalPengeluaranTF.setText("Rp. " + TotalPengeluaran);
         TotalKasTF.setText("Rp. " + TotalKas);
 
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Double Pengeluaran = Double.valueOf(PengeluaranBulanTF.getText());
+                Double TotalPengeluaran1 = TotalPengeluaran + Pengeluaran;
+                Double TotalKas = TotalPemasukan - TotalPengeluaran;
 
+                TotalPemasukanTF.setText("Rp. " + TotalPemasukan);
+                TotalPengeluaranTF.setText("Rp. " + TotalPengeluaran1);
+                TotalKasTF.setText("Rp. " + TotalKas);
+            }
+        });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

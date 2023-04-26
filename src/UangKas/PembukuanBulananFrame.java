@@ -33,6 +33,14 @@ public class PembukuanBulananFrame extends JFrame{
             PengeluananBulanLabel.setText(text);
         });
         timer.start();
+        TotalPemasukanTF.setEditable(false);
+        TotalPengeluaranTF.setEditable(false);
+        TotalKasTF.setEditable(false);
+        // ini totalnya masi coba dlo
+        double TotalPemasukan = 10;
+        double TotalPengeluaran = 9;
+        double TotalKas = TotalPemasukan - TotalPengeluaran;
+        TotalKasTF.setText("Rp. " + TotalKas);
 
 
         backButton.addActionListener(new ActionListener() {

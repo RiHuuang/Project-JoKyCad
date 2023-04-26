@@ -38,22 +38,23 @@ public class PembukuanBulananFrame extends JFrame{
         TotalPengeluaranTF.setEditable(false);
         TotalKasTF.setEditable(false);
         // ini totalnya masi coba dlo
-        double TotalPemasukan = 10;
-        double TotalPengeluaran = 9;
-        double TotalKas = TotalPemasukan - TotalPengeluaran;
+        //tinggal masukin database sabar yak
+        Double TotalPemasukan = 10.0;
+        final Double[] TotalPengeluaran = {9.0};
+        Double TotalKas = TotalPemasukan - TotalPengeluaran[0];
         TotalPemasukanTF.setText("Rp. " + TotalPemasukan);
-        TotalPengeluaranTF.setText("Rp. " + TotalPengeluaran);
+        TotalPengeluaranTF.setText("Rp. " + TotalPengeluaran[0]);
         TotalKasTF.setText("Rp. " + TotalKas);
 
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Double Pengeluaran = Double.valueOf(PengeluaranBulanTF.getText());
-                Double TotalPengeluaran1 = TotalPengeluaran + Pengeluaran;
-                Double TotalKas = TotalPemasukan - TotalPengeluaran;
-
+                TotalPengeluaran[0] = TotalPengeluaran[0] + Pengeluaran;
+                Double TotalKas = TotalPemasukan - TotalPengeluaran[0];
+                PengeluaranBulanTF.setText("");
                 TotalPemasukanTF.setText("Rp. " + TotalPemasukan);
-                TotalPengeluaranTF.setText("Rp. " + TotalPengeluaran1);
+                TotalPengeluaranTF.setText("Rp. " + TotalPengeluaran[0]);
                 TotalKasTF.setText("Rp. " + TotalKas);
             }
         });

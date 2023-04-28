@@ -13,9 +13,9 @@ import java.time.temporal.ChronoUnit;
 public class Transaksi {
     Siswa siswa;
     protected LocalDate thisMonth;
-    protected Double jumlahPembayaran;
-    protected LocalDate tanggalBayar;
-    protected Double jumlahDenda;
+    public Double jumlahPembayaran;
+    public LocalDate tanggalBayar;
+    public Double jumlahDenda;
     protected LocalDate deadlineBayar;
     protected boolean pembayaran;
     String loggedUsername = Database.getSiswaTemp().getUsername();
@@ -27,6 +27,7 @@ public class Transaksi {
     }
 
     public Transaksi(Double jumlahPembayaran, LocalDate tanggalBayar, double jumlahPengeluaran) {
+        int count = 1;
         Database.initPembukuanBulanan();
         Database.initDataSiswa();
         Database.reValidate();
@@ -62,6 +63,15 @@ public class Transaksi {
                 Database.updatePembukuanBulanan(transactionTime,awal,jumlahPembayaran,jumlahPengeluaran, akhir);
             }
             int dialog = JOptionPane.showConfirmDialog(null,"Payment Successful, Data has been recorded!\nDo you want to continue?", "Payment Successful", JOptionPane.YES_NO_OPTION);
+
+//          Ini buat masuk ke historynya
+            String tanggalHistory = transactionTime.toString();
+            String statusHistory =  Database.getSiswaTemp().getStatus();
+
+//            String dataHistory[] = {String.valueOf(count), transactionTime.toString(),Database.getSiswaTemp().getStatus()};
+//            System.out.println(data);
+
+
             if(dialog==JOptionPane.YES_OPTION) {
                 new SiswaForm();
                 Database.initDataSiswa();
@@ -72,6 +82,8 @@ public class Transaksi {
                 Database.initDataSiswa();
                 Database.reValidate();
             }
+
+            count++;
         }else throw new RuntimeException();
 
 

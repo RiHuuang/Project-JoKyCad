@@ -1,6 +1,6 @@
 Richard,PPTI15,1,admin1,admin1,admin,0
 Franky,PPTI15,1,admin2,admin2,admin,0
-Joshua,PPTI15,1,B30401,xc73gt,siswa,2
+Joshua,PPTI15,0,B30401,xc73gt,siswa,0
 Alice,PPTI11,1,Alice_admin,password_admin,admin,0
 David,PPTI11,0,IntrepidDavid,sQ6#mF9@,siswa,3
 Kate,PPTI11,0,KeenKate,jA8$bP5%,siswa,0
@@ -41,7 +41,7 @@ Robert,PPTI13,1,RavenousRobert,rF3^kN9&,siswa,0
 Kate,PPTI12,1,KillerKate,bG5%jL8$,siswa,2
 Jack,PPTI13,0,JubilantJack,nH8mK5#,siswa,1
 Mia,PPTI12,0,MajesticMia,pL7@nF9$,siswa,0
-Charlie,PPTI12,1,CheerfulCharlie,tS6!jK9%,siswa,0
+Charlie,PPTI12,0,CheerfulCharlie,tS6!jK9%,siswa,0
 Samantha,PPTI11,0,StellarSamantha,vG4$lM8^,siswa,0
 Henry,PPTI13,0,HonestHenry,sC9#pK6&,siswa,0
 Alice,PPTI13,0,AmazingAlice,rT7@mN5&,siswa,0

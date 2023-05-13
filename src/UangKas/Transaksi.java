@@ -18,14 +18,33 @@ public class Transaksi {
     public Double jumlahDenda;
     protected LocalDate deadlineBayar;
     protected boolean pembayaran;
-    String loggedUsername = Database.getSiswaTemp().getUsername();
-    String loggedPassword = Database.getSiswaTemp().getPassword();
+//    String loggedUsername = Database.getSiswaTemp().getUsername();
+//    String loggedPassword = Database.getSiswaTemp().getPassword();
 
     public Transaksi(LocalDate tanggalHariIni){
         tanggalBayar = tanggalHariIni;
         //cuman buat init doang biar bisa manggil yg ada di transaksi (?)
     }
 
+    public Transaksi(double jumlahPengeluaran, LocalDate tanggalBayar){
+        Database.initPembukuanBulanan();
+
+        System.out.println("Tanggal Bayar get month value -> "+tanggalBayar.getMonthValue());
+//        System.out.println("\n"+Database.getPembukuans().getClass());
+        LocalDate transactionTime = LocalDate.now();
+        System.out.println("Database get pembukuans size terakhir getvalue -> "+Database.getPembukuans().get(Database.getPembukuans().size()-1).getTanggal().getMonthValue());
+        if (tanggalBayar.getMonthValue()==(Database.getPembukuans().get(Database.getPembukuans().size()-1).getTanggal().getMonthValue())){
+            Database.updatePembukuanBulanan(transactionTime,0,jumlahPengeluaran);
+        }else { // Kalau Bulan nya beda kek di data terakhir (bulan baru)
+            double awal = Database.getPembukuans().get(Database.getPembukuans().size()-1).getJumlahAkhir();
+            double akhir = awal + Database.getPembukuans().get(Database.getPembukuans().size()-1).getPemasukanBulanan() - jumlahPengeluaran;
+            Database.updatePembukuanBulanan(transactionTime,awal,0,jumlahPengeluaran, akhir);
+        }
+        int dialog = JOptionPane.showConfirmDialog(null,"Changes Successful, Data has been recorded!\nDo you want to continue?", "Payment Successful", JOptionPane.YES_NO_OPTION);
+
+        return;
+
+    }
     public Transaksi(Double jumlahPembayaran, LocalDate tanggalBayar, double jumlahPengeluaran) {
         int count = 1;
         Database.initPembukuanBulanan();

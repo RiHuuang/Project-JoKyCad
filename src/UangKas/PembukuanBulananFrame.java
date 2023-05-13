@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class PembukuanBulananFrame extends JFrame{
@@ -39,23 +40,34 @@ public class PembukuanBulananFrame extends JFrame{
         TotalKasTF.setEditable(false);
         // ini totalnya masi coba dlo
         //tinggal masukin database sabar yak
-        Double TotalPemasukan = 10.0;
-        final Double[] TotalPengeluaran = {9.0};
-        Double TotalKas = TotalPemasukan - TotalPengeluaran[0];
+        Pembukuan PembukuanTerakhir = Database.getPembukuans().get(Database.getPembukuans().size()-1);
+        System.out.println(PembukuanTerakhir.getPemasukanBulanan());
+        System.out.println(PembukuanTerakhir.getPengeluaranBulanan());
+//        System.out.println(PembukuanTerakhir.g);
+        Double TotalPemasukan = PembukuanTerakhir.getPemasukanBulanan();
+        Double TotalPengeluaran = PembukuanTerakhir.getPengeluaranBulanan();
+        Double TotalKas = PembukuanTerakhir.getJumlahAkhir();
         TotalPemasukanTF.setText("Rp. " + TotalPemasukan);
-        TotalPengeluaranTF.setText("Rp. " + TotalPengeluaran[0]);
+        TotalPengeluaranTF.setText("Rp. " + TotalPengeluaran);
         TotalKasTF.setText("Rp. " + TotalKas);
 
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Double Pengeluaran = Double.valueOf(PengeluaranBulanTF.getText());
-                TotalPengeluaran[0] = TotalPengeluaran[0] + Pengeluaran;
-                Double TotalKas = TotalPemasukan - TotalPengeluaran[0];
-                PengeluaranBulanTF.setText("");
-                TotalPemasukanTF.setText("Rp. " + TotalPemasukan);
-                TotalPengeluaranTF.setText("Rp. " + TotalPengeluaran[0]);
-                TotalKasTF.setText("Rp. " + TotalKas);
+//                Double Pengeluaran = Double.valueOf(PengeluaranBulanTF.getText());
+//                TotalPengeluaran[0] = TotalPengeluaran[0] + Pengeluaran;
+//                Double TotalKas = TotalPemasukan - TotalPengeluaran[0];
+//                PengeluaranBulanTF.setText("");
+//                TotalPemasukanTF.setText("Rp. " + TotalPemasukan);
+//                TotalPengeluaranTF.setText("Rp. " + TotalPengeluaran[0]);
+                String PengeluaranBulananString = String.valueOf(PengeluaranBulanTF.getText());
+//                System.out.println(PengeluaranBulananString);
+                Double PengeluaranBulanan = Double.parseDouble(PengeluaranBulananString);
+//                System.out.println("Pengeluaran bulanan  = "+ PengeluaranBulanan);
+//                TotalKasTF.setText("Rp. " + TotalKas);
+                new Transaksi(PengeluaranBulanan, LocalDate.now());
+                dispose();
+                new PembukuanBulananFrame();
             }
         });
         backButton.addActionListener(new ActionListener() {

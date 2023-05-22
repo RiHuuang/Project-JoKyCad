@@ -16,7 +16,7 @@ public class Database {
     private static ArrayList<User> users = new ArrayList<>();
     private static ArrayList<Transaksi> histories = new ArrayList<>();
     private static ArrayList<Pembukuan> pembukuans = new ArrayList<>();
-    private static String[] status = new String[]{"Lunas", "Belum Bayar"};
+    private static String[] status = new String[]{"Lunas", "Belum Bayar", "Admin"};
     private static Siswa siswaTemp;
     private static User userTemp;
     private static Admin adminTemp;
@@ -123,6 +123,36 @@ public class Database {
             e.printStackTrace();
         }
         siswaTemp.setStatus(getStatus(updatedStatus));
+    }
+    public static void resetStatusSiswa(){
+
+        StringBuffer sb = new StringBuffer();
+        try{
+            BufferedReader br = new BufferedReader(new FileReader("FileDataSiswa.txt"));
+
+            String s="";
+
+            while ((s=br.readLine()) !=null){
+                String[] data;
+                data = s.split(",");
+
+                if(data[2].equals("2")){
+                    sb.append(s);
+                }else{
+                    String update = data[0]+","+ data[1]+",1,"+ data[3]+","+ data[4]+","+ data[5]+","+ data[6];
+                    sb.append(update);
+                }
+
+                sb.append("\n");
+            }
+            br.close();
+
+            BufferedWriter bw = new BufferedWriter(new FileWriter("FileDataSiswa.txt"));
+            bw.write(sb.toString());
+            bw.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     public static void insertHistorySiswa(double jumlahBayar, LocalDate tanggalBayar){
         String loggedUsername = getSiswaTemp().getUsername();

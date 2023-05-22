@@ -6,6 +6,7 @@ import User.SiswaForm;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 public class Loginn extends JFrame{
 //    EnterSiswa enterSiswa;
@@ -20,6 +21,7 @@ public class Loginn extends JFrame{
 
     public Loginn(){
         Database.initDataSiswa();
+        if(LocalDate.now().getDayOfMonth()==1)Database.resetStatusSiswa();
 
         setTitle("Login Kas Rumah Talenta BCA");
         setContentPane(Content);

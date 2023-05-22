@@ -26,6 +26,10 @@ public class Transaksi {
         //cuman buat init doang biar bisa manggil yg ada di transaksi (?)
     }
 
+    public Transaksi(LocalDate tanggalBayar, double jumlahPembayaran){
+        this.tanggalBayar = tanggalBayar;
+        this.jumlahPembayaran = jumlahPembayaran;
+    }
     public Transaksi(double jumlahPengeluaran, LocalDate tanggalBayar){
         Database.initPembukuanBulanan();
 
@@ -63,10 +67,12 @@ public class Transaksi {
 
         }else if(Database.getSiswaTemp().getStatus().equalsIgnoreCase("belum bayar")){
             Database.updateDataSiswa(Database.getSiswaTemp().getUsername(),Database.getSiswaTemp().getPassword(),0,0);
-            //        INSERT HISTORY
+
+            //        INSERT HISTORY SISWA
             LocalDate transactionTime = LocalDate.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM uuuu");
             Database.insertHistorySiswa(jumlahPembayaran, transactionTime);
+
             System.out.println("Pembayaran"+Database.getSiswaTemp().getUsername() + " " + Database.getSiswaTemp().getStatus());
 
 //        NAMBAHIN KE PEMBUKUAN BULANAN
@@ -83,12 +89,6 @@ public class Transaksi {
             }
             int dialog = JOptionPane.showConfirmDialog(null,"Payment Successful, Data has been recorded!\nDo you want to continue?", "Payment Successful", JOptionPane.YES_NO_OPTION);
 
-//          Ini buat masuk ke historynya
-            String tanggalHistory = transactionTime.toString();
-            String statusHistory =  Database.getSiswaTemp().getStatus();
-
-//            String dataHistory[] = {String.valueOf(count), transactionTime.toString(),Database.getSiswaTemp().getStatus()};
-//            System.out.println(data);
 
 
             if(dialog==JOptionPane.YES_OPTION) {
@@ -118,10 +118,8 @@ public class Transaksi {
     protected long countDaysPassed(){
         LocalDate currentDate = LocalDate.now();
 
-        // Get the last day of the previous month
         LocalDate lastDayOfPreviousMonth = currentDate.withDayOfMonth(1).minusDays(1);
 
-        // Calculate the number of days between the last day of the previous month and today's date
         long daysSinceDeadline = ChronoUnit.DAYS.between(lastDayOfPreviousMonth, currentDate);
 
 
@@ -145,6 +143,13 @@ public class Transaksi {
         else return 25000.00;
     }
 
+    public Double getJumlahPembayaran() {
+        return jumlahPembayaran;
+    }
+
+    public LocalDate getTanggalBayar() {
+        return tanggalBayar;
+    }
 
     public static void main(String[] args) {
         System.out.println(getDeadline(LocalDate.now()));

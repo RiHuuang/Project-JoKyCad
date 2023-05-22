@@ -20,6 +20,7 @@ public class Loginn extends JFrame{
 
     public Loginn(){
         Database.initDataSiswa();
+
         setTitle("Login Kas Rumah Talenta BCA");
         setContentPane(Content);
         setSize(500,500);

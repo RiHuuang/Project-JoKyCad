@@ -9,6 +9,7 @@ import User.Admin;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Database {
 
@@ -45,6 +46,7 @@ public class Database {
                     return 1;
                 } else if (users.get(i) instanceof Siswa) {
                     siswaTemp = (Siswa) userTemp;
+                    Database.initHistorySiswa();
                     return 2;
                 }else return 0;
             }
@@ -54,6 +56,7 @@ public class Database {
 
     public static void reValidate() {
         validate(siswaTemp.getUsername(), siswaTemp.getNama(), siswaTemp.getPassword(), siswaTemp.getRole());
+
     }
 
 
@@ -130,6 +133,30 @@ public class Database {
             String temp = tanggalBayar +","+loggedUsername+","+loggedClass+","+ jumlahBayar+"\n";
             pw.append(temp);
             pw.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void initHistorySiswa(){
+        try{
+            BufferedReader br = new BufferedReader(new FileReader("FileHistorySiswa.txt"));
+            String s="";
+
+            while ((s=br.readLine()) !=null){
+                String[] data;
+                data = s.split(",");
+//                date, jumlah duid awal, pemasukan bulan ini, pengeluaran bulan ini, jumlah duid akhir
+                LocalDate tanggalInput = LocalDate.parse(data[0]);
+//                System.out.println(TanggalInput);
+                String username = data[1];
+                String kelasUser = data[2];
+                double uangMasuk = Double.parseDouble(data[3]);
+                if(siswaTemp.getUsername().equals(username)){
+                    siswaTemp.getHistoryTransaksi().add(new Transaksi(tanggalInput,uangMasuk));
+                    System.out.println("jumlah dari siswatemp sekarang transaksinya adalah : "+ siswaTemp.getHistoryTransaksi().size());
+                }
+            }
         }catch(Exception e){
             e.printStackTrace();
         }

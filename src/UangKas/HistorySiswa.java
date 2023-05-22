@@ -1,4 +1,6 @@
 package UangKas;
+import FormLogin.Database;
+import User.Siswa;
 import User.SiswaForm;
 
 import javax.swing.*;
@@ -6,6 +8,7 @@ import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class HistorySiswa extends JFrame{
 
@@ -35,14 +38,12 @@ public class HistorySiswa extends JFrame{
     }
 
     public static class HistoryTable extends AbstractTableModel{
-//        Transaksi transaksi = new
-
-        private final String[] COLUMN = {"Tanggal","Status"};
+        private final String[] COLUMN = {"Tanggal","Nominal"};
 
 
         @Override
         public int getRowCount() {
-            return 0;
+            return Database.getSiswaTemp().getHistoryTransaksi().size();
         }
 
         @Override
@@ -55,7 +56,11 @@ public class HistorySiswa extends JFrame{
         }
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            return null;
+            return switch (columnIndex){
+                case 0 -> Database.getSiswaTemp().getHistoryTransaksi().get(rowIndex).getTanggalBayar();
+                case 1 -> Database.getSiswaTemp().getHistoryTransaksi().get(rowIndex).getJumlahPembayaran();
+                default -> "-";
+            };
         }
     }
 

@@ -75,14 +75,14 @@ public class DataSiswa extends JFrame implements ActionListener {
             this.users = Database.getUsers();
 
             //ni nyoba doang
-            for(User user : users){
-                if(user instanceof Admin){
-
-//                    assert this.siswas != null;
-//                    this.siswas.add((Siswa) user);
-//                    this.siswas = siswas.add( new Siswa(user.getNama(),user.getKelas(),((Siswa) user).getStatus(),user.getUsername(),user.getPassword(),user.getRole()));
-                }
-            }
+//            for(User user : users){
+//                if(user instanceof Admin){
+//
+////                    assert this.siswas != null;
+////                    this.siswas.add((Siswa) user);
+////                    this.siswas = siswas.add( new Siswa(user.getNama(),user.getKelas(),((Siswa) user).getStatus(),user.getUsername(),user.getPassword(),user.getRole()));
+//                }
+//            }
 
         }
 
@@ -101,7 +101,6 @@ public class DataSiswa extends JFrame implements ActionListener {
             return switch (columnIndex){
                 case 0 -> users.get(rowIndex).getNama();
                 case 1 -> users.get(rowIndex).getKelas();
-                //status nya error, gabisa ngambil status dari si siswa nya harus lewat user
                 case 2 -> users.get(rowIndex).getStatus();
                 default -> "-";
             };

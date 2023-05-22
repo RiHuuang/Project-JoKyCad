@@ -28,9 +28,6 @@ public class Siswa extends User{
         this.daysPassed = daysPassed;
     }
 
-    public static void main(String[] args) {
-
-    }
 
 
 }

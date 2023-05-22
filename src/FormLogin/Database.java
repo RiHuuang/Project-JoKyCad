@@ -298,15 +298,6 @@ public class Database {
         return status[i];
     }
 
-
-    public static void main(String[] args) {
-//        initDataSiswa();
-        initPembukuanBulanan();
-        System.out.println(Database.getPembukuans().get(0));
-
-//        System.out.println(users.size());
-//        validate("ZanyZachary", "Zachary", "password_admin","admin");
-    }
 }
 
 

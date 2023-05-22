@@ -2,25 +2,17 @@ package UangKas;
 
 import FormLogin.Database;
 import FormLogin.Loginn;
-import User.Siswa;
 import User.SiswaForm;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class Transaksi {
-    Siswa siswa;
-    protected LocalDate thisMonth;
     public Double jumlahPembayaran;
     public LocalDate tanggalBayar;
-    public Double jumlahDenda;
-    protected LocalDate deadlineBayar;
-    protected boolean pembayaran;
-//    String loggedUsername = Database.getSiswaTemp().getUsername();
-//    String loggedPassword = Database.getSiswaTemp().getPassword();
+
 
     public Transaksi(LocalDate tanggalHariIni){
         tanggalBayar = tanggalHariIni;
@@ -156,8 +148,4 @@ public class Transaksi {
         return tanggalBayar;
     }
 
-    public static void main(String[] args) {
-        System.out.println(getDeadline(LocalDate.now()));
-
-    }
 }

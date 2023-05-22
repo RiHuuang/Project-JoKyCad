@@ -21,6 +21,7 @@ public class Database {
     private static User userTemp;
     private static Admin adminTemp;
 
+    public static int initCount = 0;
 
 
 
@@ -139,6 +140,7 @@ public class Database {
     }
 
     public static void initHistorySiswa(){
+        if(initCount == 1) return;
         try{
             BufferedReader br = new BufferedReader(new FileReader("FileHistorySiswa.txt"));
             String s="";
@@ -157,6 +159,7 @@ public class Database {
                     System.out.println("jumlah dari siswatemp sekarang transaksinya adalah : "+ siswaTemp.getHistoryTransaksi().size());
                 }
             }
+            initCount++;
         }catch(Exception e){
             e.printStackTrace();
         }

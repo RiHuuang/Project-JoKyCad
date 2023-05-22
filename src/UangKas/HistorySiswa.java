@@ -20,6 +20,7 @@ public class HistorySiswa extends JFrame{
 
     public HistorySiswa(){
         super();
+//        Database.initHistorySiswa();
         setContentPane(HistoryPanel);
         setVisible(true);
         setSize(500,500);

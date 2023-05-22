@@ -6,6 +6,7 @@ import User.Siswa;
 import User.SiswaForm;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -72,6 +73,9 @@ public class Transaksi {
             LocalDate transactionTime = LocalDate.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM uuuu");
             Database.insertHistorySiswa(jumlahPembayaran, transactionTime);
+            Database.initCount = 0; //agar mengulang initialisasi data.
+            //disini abis nge 0 in, ngereset si arraylist nya
+            Database.getSiswaTemp().getHistoryTransaksi().clear();
 
             System.out.println("Pembayaran"+Database.getSiswaTemp().getUsername() + " " + Database.getSiswaTemp().getStatus());
 
@@ -87,6 +91,7 @@ public class Transaksi {
                 double akhir = awal + jumlahPembayaran - jumlahPengeluaran;
                 Database.updatePembukuanBulanan(transactionTime,awal,jumlahPembayaran,jumlahPengeluaran, akhir);
             }
+
             int dialog = JOptionPane.showConfirmDialog(null,"Payment Successful, Data has been recorded!\nDo you want to continue?", "Payment Successful", JOptionPane.YES_NO_OPTION);
 
 
